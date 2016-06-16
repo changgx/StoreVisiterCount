@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="changgx:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="changgx.war">
+      <element id="artifact" artifact-name="changgx:war exploded" />
+    </root>
+  </artifact>
+</component>
