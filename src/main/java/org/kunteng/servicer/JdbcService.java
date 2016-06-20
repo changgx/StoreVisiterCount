@@ -1,6 +1,5 @@
 package org.kunteng.servicer;
 
-import org.kunteng.ChannelBean;
 import org.kunteng.util.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -8,8 +7,6 @@ import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/6/13.
@@ -37,12 +34,12 @@ public class JdbcService {
         connection = Utils.getConnection(url, username, password);
         sql = "SELECT code FROM channel where  account=?";
         ps = connection.prepareStatement(sql);
-        ps.setString(1,account);
+        ps.setString(1, account);
         resultSet = ps.executeQuery();
-        String code="";
+        String code = "";
         while (resultSet.next()) {
-            code=resultSet.getString(1);
-            code=code.replace("#","_");
+            code = resultSet.getString(1);
+            code = code.replace("#", "_");
         }
 
         this.closeResources();

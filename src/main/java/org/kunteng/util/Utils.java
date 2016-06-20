@@ -1,5 +1,6 @@
 package org.kunteng.util;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.text.ParseException;
@@ -38,9 +39,13 @@ public class Utils {
      * @param key  value对应的key
      * @return
      */
-    public static String getPropertiesValue(String path, String key) throws Exception {
+    public static String getPropertiesValue(String path, String key) {
         Properties properties = new Properties();
-        properties.load(Utils.class.getClassLoader().getResourceAsStream(path));
+        try {
+            properties.load(Utils.class.getClassLoader().getResourceAsStream(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return properties.getProperty(key);
 
     }
@@ -112,7 +117,9 @@ public class Utils {
     }
 
     public static void main(String[] args) {
-        System.out.println(hour("1460430000000"));
+        System.out.println(Utils.getPropertiesValue("configuration.properties", "cluster.name"));
+
     }
+
 
 }
